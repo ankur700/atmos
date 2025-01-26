@@ -7,7 +7,7 @@
     "tw": "./bin/cli.js"
   },
   "scripts": {
-    "dev": "ts-node src/index.ts",
+    "dev": "tsc && node ./dist/index.js",
     "build": "tsc",
     "publish": "npm publish"
   },
