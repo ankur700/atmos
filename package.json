@@ -1,0 +1,40 @@
+{
+  "name": "terminal-weather",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "type": "module",
+  "bin": {
+    "tw": "./bin/cli.js"
+  },
+  "scripts": {
+    "dev": "ts-node src/index.ts",
+    "build": "tsc",
+    "publish": "npm publish"
+  },
+  "keywords": [
+    "weather",
+    "cli",
+    "forecast"
+  ],
+  "files": [
+    "bin",
+    "dist"
+  ],
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "author": "ankur singh",
+  "license": "ISC",
+  "description": "Terminal Weather is a CLI tool to get the weather forecast of any city in the world.",
+  "dependencies": {
+    "@clack/core": "^0.4.1",
+    "@clack/prompts": "^0.9.1",
+    "openmeteo": "^1.1.4",
+    "picocolors": "^1.1.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.10",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.3"
+  }
+}
