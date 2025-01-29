@@ -1,6 +1,6 @@
 {
   "name": "atmos-weather-cli",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "main": "dist/index.js",
   "homepage": "https://github.com/ankur700/terminal-weather#readme",
   "type": "module",
