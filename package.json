@@ -1,8 +1,8 @@
 {
-  "name": "atmos",
-  "version": "1.0.0",
+  "name": "atmos-weather-cli",
+  "version": "0.0.1",
   "main": "dist/index.js",
-  "homepage": "https://github.com/ankur700/atmos#readme",
+  "homepage": "https://github.com/ankur700/terminal-weather#readme",
   "type": "module",
   "bin": {
     "atmos": "./bin/cli.js"
@@ -10,7 +10,8 @@
   "scripts": {
     "dev": "tsc && node ./dist/index.js",
     "watch": "tsc -w",
-    "publish": "npm publish"
+    "prepublishOnly": "node ./src/prepublish.js && tsc",
+    "release": "cross-env RELEASE_MODE=true np --no-tests"
   },
   "keywords": [
     "weather",
@@ -22,7 +23,7 @@
     "dist"
   ],
   "bugs": {
-    "url": "https://github.com/ankur700/atmos/issues",
+    "url": "https://github.com/ankur700/terminal-weather/issues",
     "email": "abisheksinghchauhan@gmail.com"
   },
   "engines": {
@@ -34,10 +35,9 @@
     "url": "https://ankursingh.com.np"
   },
   "license": "ISC",
-  "packageManager": "npm@7.24.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ankur700/atmos.git"
+    "url": "https://github.com/ankur700/terminal-weather.git"
   },
   "description": "Terminal Weather is a CLI tool to get the weather forecast of any city in the world.",
   "dependencies": {
@@ -49,6 +49,7 @@
   "devDependencies": {
     "@types/node": "^22.10.10",
     "cross-env": "^7.0.3",
+    "np": "^10.2.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.3"
   }
