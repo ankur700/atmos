@@ -1,4 +1,4 @@
-import { WeatherService } from './utils/weatherService.js';
+import WeatherService from './utils/weatherService.js';
 import * as prompt from '@clack/prompts';
 import color from 'picocolors';
 export async function main() {
@@ -38,17 +38,17 @@ export async function main() {
                 try {
                     const currentForecast = await weatherService.getCurrentForecast();
                     const weatherDescription = weatherService.getWeatherDescription(currentForecast.weatherCode);
-                    const weatherIcon = weatherService.getWeatherIcon(currentForecast.weatherCode);
-                    resultText = color.green(`Time: `) + color.yellow(`${new Date().toLocaleTimeString()}\n`) + color.green(`Condition: `) + color.yellow(`${weatherDescription}`) + `${weatherIcon}\n` + color.green(`Temperature: `) + color.yellow(`${Math.round(currentForecast.temperature)}°C`) + "    " + color.green(`Feels Like: `) + color.yellow(`${Math.round(currentForecast.apparentTemperature)}°C\n`) + color.green(`Precipitation: `) + color.yellow(`${Math.round(currentForecast.precipitation)}mm`) + "    " + color.green(`Wind Speed: `) + color.yellow(`${Math.round(currentForecast.windSpeed)} km/h`);
+                    resultText = color.green(`Time: `) + color.yellow(`${new Date().toLocaleTimeString()}\n`) + color.green(`Condition: `) + color.yellow(`${weatherDescription}\n`) + color.green(`Temperature: `) + color.yellow(`${Math.round(currentForecast.temperature)}°C`) + "    " + color.green(`Feels Like: `) + color.yellow(`${Math.round(currentForecast.apparentTemperature)}°C\n`) + color.green(`Precipitation: `) + color.yellow(`${Math.round(currentForecast.precipitation)}mm`) + "    " + color.green(`Wind Speed: `) + color.yellow(`${Math.round(currentForecast.windSpeed)} km/h`);
                 }
                 catch (error) {
+                    s.stop("Failed to fetch weather data");
                     prompt.log.error('Failed to fetch current forecast');
                 }
                 break;
             case 'hourly':
                 try {
                     const hourlyForecast = await weatherService.getHourlyForecast();
-                    const TimesGreaterThanCurrentTime = hourlyForecast.time.slice(0, 24).filter((time) => time.getHours() >= new Date().getHours());
+                    const TimesGreaterThanCurrentTime = hourlyForecast.time.slice(0, 25).filter((time) => time.getHours() >= new Date().getHours());
                     TimesGreaterThanCurrentTime.forEach((time, index) => {
                         const weatherDescription = weatherService.getWeatherDescription(hourlyForecast.weatherCodes[index]);
                         const formattedtime = new Intl.DateTimeFormat('en-GB', { timeStyle: "short", hour12: true }).format(time);
@@ -56,6 +56,7 @@ export async function main() {
                     });
                 }
                 catch (error) {
+                    s.stop("Failed to fetch weather data");
                     prompt.log.error('Failed to fetch hourly forecast');
                 }
                 break;
@@ -70,6 +71,7 @@ export async function main() {
                     }
                 }
                 catch (error) {
+                    s.stop("Failed to fetch weather data");
                     prompt.log.error('Failed to fetch 7-day forecast');
                 }
                 break;
@@ -78,6 +80,7 @@ export async function main() {
             s.stop("Weather data fetched successfully!");
             const time = new Intl.DateTimeFormat('en-GB', { dateStyle: "full" }).format(new Date());
             prompt.note(resultText, `${color.bgGreen(color.black(" " + forecast.type.toUpperCase() + " forecast of " + city.toUpperCase() + " " + time + " "))}`);
+            prompt.outro('Weather data provided by openmeteo.com');
         }
     }
 }
@@ -86,3 +89,4 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     main().catch(console.error);
 }
 export default main;
+//# sourceMappingURL=index.js.map

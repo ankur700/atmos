@@ -1,5 +1,5 @@
 import { fetchWeatherApi } from 'openmeteo';
-export class WeatherService {
+export default class WeatherService {
     city;
     constructor(city) {
         this.city = city;
@@ -12,134 +12,6 @@ export class WeatherService {
         }
         const { results } = await response.json();
         return results;
-    }
-    getWeatherIcon(code) {
-        const weatherCodes = {
-            0: `
- \\   /
-  .-.
- ― (   ) ―
-  '-'
-    •
-  `,
-            1: `
- \\   /
-  .-.
- ― (   ) ―
-  '-'
-   ☁
-  `,
-            2: `
-  \\  /  _   _
- _ \\/ _ | | | |
-| '__/ _\` | | |
-| | | (_| | | |
-|_|  \\__,_|_|_|
-  `,
-            3: `
-   .--.
- .-(    ).
-(_ (__.__)
-  `,
-            45: `
- _ .--.
-(   ).
- (_(__).
-  `,
-            48: `
- _ .--.
-(   ).
- (_(__).
-  `,
-            51: `
-    .-.
-   (   ).
-  (___(__)
-  `,
-            53: `
-    .-.
-   (   ).
-  (___(__)
-  `,
-            55: `
-    .-.
-   (   ).
-  (___(__)
-  `,
-            61: `
-     .-.
-    (   ).
-   (___(__)
-  `,
-            63: `
-     .-.
-    (   ).
-   (___(__)
-  `,
-            65: `
-     .-.
-    (   ).
-   (___(__)
-  `,
-            71: `
-      *  *  *
-   *  *  *  *
-    *  *  *
-  `,
-            73: `
-      *  *  *
-   *  *  *  *
-    *  *  *
-  `,
-            75: `
-      *  *  *
-   *  *  *  *
-    *  *  *
-  `,
-            77: `
-     * * *
-    * * * *
-  `,
-            80: `
-     .-.
-    (   ).
-   (___(__)
-  `,
-            81: `
-     .-.
-    (   ).
-   (___(__)
-  `,
-            82: `
-     .-.
-    (   ).
-   (___(__)
-  `,
-            85: `
-      *  *  *
-   *  *  *  *
-  `,
-            86: `
-      *  *  *
-   *  *  *  *
-  `,
-            95: `
-      /\\
-     /  \\
-    /____\\
-  `,
-            96: `
-      /\\
-     /  \\
-    /____\\
-  `,
-            99: `
-      /\\
-     /  \\
-    /____\\
-  `
-        };
-        return weatherCodes[code] || '❓';
     }
     getWeatherDescription(code) {
         const weatherCodes = {
@@ -242,3 +114,4 @@ export class WeatherService {
         };
     }
 }
+//# sourceMappingURL=weatherService.js.map

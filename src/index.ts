@@ -1,5 +1,5 @@
 
-import { WeatherService } from './utils/weatherService.js';
+import WeatherService from './utils/weatherService.js';
 import * as prompt from '@clack/prompts';
 import color from 'picocolors';
 
@@ -46,13 +46,11 @@ export async function main() {
       case 'current':
         try {
           const currentForecast = await weatherService.getCurrentForecast();
-
           const weatherDescription = weatherService.getWeatherDescription(currentForecast.weatherCode);
 
-          const weatherIcon = weatherService.getWeatherIcon(currentForecast.weatherCode);
-
-          resultText = color.green(`Time: `) + color.yellow(`${new Date().toLocaleTimeString()}\n`) + color.green(`Condition: `) + color.yellow(`${weatherDescription}`) + `${weatherIcon}\n` + color.green(`Temperature: `) + color.yellow(`${Math.round(currentForecast.temperature)}°C`) + "    " + color.green(`Feels Like: `) + color.yellow(`${Math.round(currentForecast.apparentTemperature)}°C\n`) + color.green(`Precipitation: `) + color.yellow(`${Math.round(currentForecast.precipitation)}mm`) + "    " + color.green(`Wind Speed: `) + color.yellow(`${Math.round(currentForecast.windSpeed)} km/h`);
+          resultText = color.green(`Time: `) + color.yellow(`${new Date().toLocaleTimeString()}\n`) + color.green(`Condition: `) + color.yellow(`${weatherDescription}\n`) + color.green(`Temperature: `) + color.yellow(`${Math.round(currentForecast.temperature)}°C`) + "    " + color.green(`Feels Like: `) + color.yellow(`${Math.round(currentForecast.apparentTemperature)}°C\n`) + color.green(`Precipitation: `) + color.yellow(`${Math.round(currentForecast.precipitation)}mm`) + "    " + color.green(`Wind Speed: `) + color.yellow(`${Math.round(currentForecast.windSpeed)} km/h`);
         } catch (error) {
+          s.stop("Failed to fetch weather data");
           prompt.log.error('Failed to fetch current forecast');
         }
 
@@ -61,16 +59,15 @@ export async function main() {
       case 'hourly':
         try {
           const hourlyForecast = await weatherService.getHourlyForecast();
-          const TimesGreaterThanCurrentTime = hourlyForecast.time.slice(0, 24).filter((time) => time.getHours() >= new Date().getHours());
+          const TimesGreaterThanCurrentTime = hourlyForecast.time.slice(0, 25).filter((time) => time.getHours() >= new Date().getHours());
           TimesGreaterThanCurrentTime.forEach((time: Date, index: number) => {
-
             const weatherDescription = weatherService.getWeatherDescription(hourlyForecast.weatherCodes[index]);
-
             const formattedtime = new Intl.DateTimeFormat('en-GB', { timeStyle: "short", hour12: true }).format(time);
 
             resultText = resultText + `${index > 0 ? "\n\n" : ""}` + color.green(`Time: `) + color.yellow(`${formattedtime}\n`) + color.green(`Condition: `) + color.yellow(`${weatherDescription}\n`) + color.green(`Temperature: `) + color.yellow(`${Math.round(hourlyForecast.temperatures[index])}°C`) + "    " + color.green(`Feels Like: `) + color.yellow(`${Math.round(hourlyForecast.apparentTemperatures[index])}°C\n`) + color.green(`Precipitation: `) + color.yellow(`${Math.round(hourlyForecast.precipitations[index])}mm`) + "    " + color.green(`Wind Speed: `) + color.yellow(`${Math.round(hourlyForecast.windSpeeds[index])} km/h`);
           });
         } catch (error) {
+          s.stop("Failed to fetch weather data");
           prompt.log.error('Failed to fetch hourly forecast');
         }
 
@@ -86,6 +83,7 @@ export async function main() {
             })}\n`) + color.green(`Condition: `) + color.yellow(`${weatherDescription}\n`) + color.green(`Max: `) + color.yellow(`${Math.round(sevenDayForecast.temperatureMax[i])}°C`) + "    " + color.green(`Min: `) + color.yellow(`${Math.round(sevenDayForecast.temperatureMin[i])}°C\n`);
           }
         } catch (error) {
+          s.stop("Failed to fetch weather data");
           prompt.log.error('Failed to fetch 7-day forecast');
         }
         break;
@@ -99,6 +97,7 @@ export async function main() {
           color.black(" " + forecast.type.toUpperCase() + " forecast of " + city.toUpperCase() + " " + time + " ")
         )}`
       );
+      prompt.outro('Weather data provided by openmeteo.com');
     }
   }
 
