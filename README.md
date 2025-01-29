@@ -14,7 +14,15 @@ Atmos is a minimal, free and open source weather app for the linux terminal!
 1. Ensure that [node](https://nodejs.org/en/download) is installed on your system. Then you can install it using the command below:
 
 ```
-npm install -g atmos
+npm install -g atmos-weather-cli
+```
+
+# Usage
+
+Run command
+
+```
+atmos
 ```
 
 # Uninstall Raindrop
@@ -22,5 +30,5 @@ npm install -g atmos
 To uninstall atmos, use the command below:
 
 ```
-npm remove -g atmos
+npm remove -g atmos-weather-cli
 ```
