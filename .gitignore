@@ -40,3 +40,6 @@ typings/
 # Temporary files
 *.tmp
 *.bak
+
+# Microsoft
+/Microsoft/*

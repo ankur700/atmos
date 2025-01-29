@@ -35,6 +35,7 @@
     "url": "https://ankursingh.com.np"
   },
   "license": "ISC",
+  "packageManager": "npm@7.24.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/ankur700/terminal-weather.git"
