@@ -2,7 +2,7 @@
   "name": "atmos-weather-cli",
   "version": "1.0.0",
   "main": "dist/index.js",
-  "homepage": "https://github.com/ankur700/terminal-weather#readme",
+  "homepage": "https://github.com/ankur700/atmos#readme",
   "type": "module",
   "bin": {
     "atmos": "./bin/cli.js"
@@ -23,7 +23,7 @@
     "dist"
   ],
   "bugs": {
-    "url": "https://github.com/ankur700/terminal-weather/issues",
+    "url": "https://github.com/ankur700/atmos/issues",
     "email": "abisheksinghchauhan@gmail.com"
   },
   "engines": {
@@ -37,7 +37,7 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ankur700/terminal-weather.git"
+    "url": "https://github.com/ankur700/atmos.git"
   },
   "description": "Terminal Weather is a CLI tool to get the weather forecast of any city in the world.",
   "dependencies": {
