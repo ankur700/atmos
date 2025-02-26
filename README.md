@@ -1,8 +1,9 @@
 # Atmos
 
-Atmos is a minimal, free, and open-source weather app for the Linux terminal!
+Atmos is a minimal, free, and open-source weather forecast cli for the terminal!
 
 ## Table of Contents
+
 - [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
@@ -28,6 +29,7 @@ Atmos is a minimal, free, and open-source weather app for the Linux terminal!
 ## Usage
 
 Run the following command to use Atmos:
+
 ```sh
 atmos
 ```
@@ -35,6 +37,7 @@ atmos
 ## Uninstallation
 
 To uninstall Atmos, use the following command:
+
 ```sh
 npm remove -g atmos-weather-cli
 ```
